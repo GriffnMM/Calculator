@@ -1,15 +1,27 @@
+# -*- coding: utf-8 -*-
 from Tkinter import *
 import math
 
+class calc:
+    def getreplace(self):
+        """replace x with * and ÷ with /"""
+        self.expression=self.e.get()
+        self.newtext=self.expression.replace(self.newdiv,'/')
+        self.newtext=self.newtext.replace('x','*')
+        
+self.getreplace()
 
-
-
-
-
+def init(self,root):
+    root.title("calculator")
+    root.geometry()
+    self.e=Entry(root, width=50)
+    self.e.grid(row=0,colomn=0,columnspan=6,pady=3)
+    self.e.focus_set()
+    
 root = Tk()
 root.title("calculator")
 
-title = Label(root, text="The greatest calculator ever made!                      ", bg = "magenta")
+title = Label(root, text="The greatest calculatmade!                      ", bg = "magenta")
 title.grid(row=0, column=0, sticky=EW, columnspan=6)
 
 menubar=Menu(root)
@@ -25,14 +37,13 @@ root.config(menu=menubar)
 entry1 = Entry(root)
 entry1.grid(row=1, column=0, sticky=EW, columnspan=6)
 
-button1 = Button(root, text="1")
+button1 = Button(root, text="1", command=lambda:self.action(1))
 button1.grid(row=4, column=0, sticky=EW)
 
 button2 = Button(root, text="2")
 button2.grid(row=4, column=1, sticky=EW)
 
 button3 = Button(root, text="3")
-button3.grid(row=4, column=2, sticky=EW)
 
 button4 = Button(root, text="4")
 button4.grid(row=3, column=0, sticky=EW)
@@ -67,7 +78,7 @@ buttonminus.grid(row=3, column=3, sticky=EW)
 buttonmult = Button(root, text="x")
 buttonmult.grid(row=4, column=3, sticky=EW)
 
-buttondiv = Button(root, text="/")
+buttondiv = Button(root, text="÷")
 buttondiv.grid(row=5, column=3, sticky=EW)
 
 mainloop()
