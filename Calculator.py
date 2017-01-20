@@ -1,84 +1,149 @@
-# -*- coding: utf-8 -*-
+#-*-coding: utf-8-*-
 from Tkinter import *
 import math
 
-class calc:
-    def getreplace(self):
-        """replace x with * and ÷ with /"""
-        self.expression=self.e.get()
-        self.newtext=self.expression.replace(self.newdiv,'/')
-        self.newtext=self.newtext.replace('x','*')
-        
-self.getreplace()
-
-def init(self,root):
-    root.title("calculator")
-    root.geometry()
-    self.e=Entry(root, width=50)
-    self.e.grid(row=0,colomn=0,columnspan=6,pady=3)
-    self.e.focus_set()
+def clearstuff():
+    e.delete(0,END)
     
+def openfilememes():
+    print "it works"
+
+class calc:
+ def getandreplace(self):
+  """replace x with * and ÷ with /"""
+  
+  self.expression = self.e.get()
+  self.newtext=self.expression.replace(self.newdiv,'/')
+  self.newtext=self.newtext.replace('x','*')
+
+ def equals(self):
+  """when the equal button is pressed"""
+
+  self.getandreplace()
+  try: 
+   self.value= eval(self.newtext)
+  except SyntaxError or NameError:
+   self.e.delete(0,END)
+   self.e.insert(0,'Invalid Input')
+  else:
+   self.e.delete(0,END)
+   self.e.insert(0,self.value)
+ 
+ def squareroot(self):
+  """squareroot method"""
+  
+  self.getandreplace()
+  try: 
+   self.value= eval(self.newtext) 
+  except SyntaxError or NameError:
+   self.e.delete(0,END)
+   self.e.insert(0,'Invalid Input')
+  else:
+   self.sqrtval=math.sqrt(self.value)
+   self.e.delete(0,END)
+   self.e.insert(0,self.sqrtval)
+
+ def square(self):
+  """square method"""
+  
+  self.getandreplace()
+  try: 
+   self.value= eval(self.newtext) 
+  except SyntaxError or NameError:
+   self.e.delete(0,END)
+   self.e.insert(0,'Invalid Input')
+  else:
+   self.sqval=math.pow(self.value,2)
+   self.e.delete(0,END)
+   self.e.insert(0,self.sqval)
+ 
+ def clearall(self): 
+  """when clear button is pressed,clears the text input area"""
+  self.e.delete(0,END)
+ 
+ def clear1(self):
+  self.txt=self.e.get()[:-1]
+  self.e.delete(0,END)
+  self.e.insert(0,self.txt)
+
+ def action(self,argi): 
+  """pressed button's value is inserted into the end of the text area"""
+  self.e.insert(END,argi)
+ 
+ def __init__(self,master):
+  """Constructor method"""
+  master.title('Calulator') 
+  master.geometry()
+  self.e = Entry(master,width=50)
+  self.e.grid(row=0,column=0,columnspan=6,pady=3)
+  self.e.focus_set()
+    
+  self.div='÷'
+  self.newdiv=self.div.decode('utf-8')
+
+  #Generating Buttons
+  Button(master,text="=",width=6,command=lambda:self.equals()).grid(row=4, column=4,columnspan=2)
+  
+  Button(master,text='AC',width=6,command=lambda:self.clearall()).grid(row=1, column=4)
+  
+  Button(master,text='C',width=6,command=lambda:self.clear1()).grid(row=1, column=5)
+  
+  Button(master,text="+",width=6,command=lambda:self.action('+')).grid(row=4, column=3)
+  
+  Button(master,text="x",width=6,command=lambda:self.action('x')).grid(row=2, column=3)
+  
+  Button(master,text="-",width=6,command=lambda:self.action('-')).grid(row=3, column=3)
+  
+  Button(master,text="÷",width=6,command=lambda:self.action(self.newdiv)).grid(row=1, column=3) 
+  
+  Button(master,text="%",width=6,command=lambda:self.action('%')).grid(row=4, column=2)
+  
+  Button(master,text="7",width=6,command=lambda:self.action('7')).grid(row=1, column=0)
+  
+  Button(master,text="8",width=6,command=lambda:self.action(8)).grid(row=1, column=1)
+  
+  Button(master,text="9",width=6,command=lambda:self.action(9)).grid(row=1, column=2)
+  
+  Button(master,text="4",width=6,command=lambda:self.action(4)).grid(row=2, column=0)
+  
+  Button(master,text="5",width=6,command=lambda:self.action(5)).grid(row=2, column=1)
+  
+  Button(master,text="6",width=6,command=lambda:self.action(6)).grid(row=2, column=2)
+  
+  Button(master,text="1",width=6,command=lambda:self.action(1)).grid(row=3, column=0)
+  
+  Button(master,text="2",width=6,command=lambda:self.action(2)).grid(row=3, column=1)
+  
+  Button(master,text="3",width=6,command=lambda:self.action(3)).grid(row=3, column=2)
+  
+  Button(master,text="0",width=6,command=lambda:self.action(0)).grid(row=4, column=0)
+  
+  Button(master,text=".",width=6,command=lambda:self.action('.')).grid(row=4, column=1)
+  
+  Button(master,text="(",width=6,command=lambda:self.action('(')).grid(row=2, column=4)
+  
+  Button(master,text=")",width=6,command=lambda:self.action(')')).grid(row=2, column=5)
+  
+  Button(master,text="√",width=6,command=lambda:self.squareroot()).grid(row=3, column=4)
+  
+  Button(master,text="x²",width=6,command=lambda:self.square()).grid(row=3, column=5)
+  
 root = Tk()
-root.title("calculator")
 
-title = Label(root, text="The greatest calculatmade!                      ", bg = "magenta")
-title.grid(row=0, column=0, sticky=EW, columnspan=6)
-
-menubar=Menu(root)
-filemenu=Menu(menubar, tearoff=0)
-filemenu.add_command(label="Clear")
-filemenu.add_separator()
+menubar = Menu(root)
+filemenu = Menu(menubar, tearoff=0)
 filemenu.add_command(label="Save")
 
-menubar.add_cascade(label="File",menu=filemenu)
+menubar.add_cascade(label="File", menu=filemenu, command=openfilememes)
+
+editmenu = Menu(menubar, tearoff=0)
+editmenu.add_command(label="Clear")
+
+menubar.add_cascade(label="Edit", menu=editmenu, command=clearstuff)
 
 root.config(menu=menubar)
 
-entry1 = Entry(root)
-entry1.grid(row=1, column=0, sticky=EW, columnspan=6)
 
-button1 = Button(root, text="1", command=lambda:self.action(1))
-button1.grid(row=4, column=0, sticky=EW)
 
-button2 = Button(root, text="2")
-button2.grid(row=4, column=1, sticky=EW)
-
-button3 = Button(root, text="3")
-
-button4 = Button(root, text="4")
-button4.grid(row=3, column=0, sticky=EW)
-
-button5 = Button(root, text="5")
-button5.grid(row=3, column=1, sticky=EW)
-
-button6 = Button(root, text="6")
-button6.grid(row=3, column=2, sticky=EW)
-
-button7 = Button(root, text="7")
-button7.grid(row=2, column=0, sticky=EW)
-
-button8 = Button(root, text="8")
-button8.grid(row=2, column=1, sticky=EW)
-
-button9 = Button(root, text="9")
-button9.grid(row=2, column=2, sticky=EW)
-
-button0 = Button(root, text="0")
-button0.grid(row=5, column=0, sticky=EW)
-
-buttone = Button(root, text="=")
-buttone.grid(row=5, column=1, sticky=EW, columnspan=2)
-
-buttonplus = Button(root, text="+")
-buttonplus.grid(row=2, column=3, sticky=EW)
-
-buttonminus = Button(root, text="-")
-buttonminus.grid(row=3, column=3, sticky=EW)
-
-buttonmult = Button(root, text="x")
-buttonmult.grid(row=4, column=3, sticky=EW)
-
-buttondiv = Button(root, text="÷")
-buttondiv.grid(row=5, column=3, sticky=EW)
-
-mainloop()
+obj=calc(root)
+root.mainloop()
