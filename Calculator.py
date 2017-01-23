@@ -4,9 +4,6 @@ import math
 
 def clearstuff():
     e.delete(0,END)
-    
-def openfilememes():
-    print "it works"
 
 class calc:
  def getandreplace(self):
@@ -81,7 +78,6 @@ class calc:
   self.div='÷'
   self.newdiv=self.div.decode('utf-8')
 
-  #Generating Buttons
   Button(master,text="=",width=6,command=lambda:self.equals()).grid(row=4, column=4,columnspan=2)
   
   Button(master,text='AC',width=6,command=lambda:self.clearall()).grid(row=1, column=4)
@@ -127,19 +123,29 @@ class calc:
   Button(master,text="√",width=6,command=lambda:self.squareroot()).grid(row=3, column=4)
   
   Button(master,text="x²",width=6,command=lambda:self.square()).grid(row=3, column=5)
-  
+    
+def openfileW():
+  print "it works"
+    
+def openfileR():
+  fj=open("Readme.txt", 'w')
+  inputs = master.get(0, END)
+  for i in inputs:
+   fj.write(i+"\n")
+  fj.close()
+
 root = Tk()
 
 menubar = Menu(root)
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Save")
-
-menubar.add_cascade(label="File", menu=filemenu, command=openfilememes)
+filemenu.add_command(label="Save", command=openfileR)
+menubar.add_cascade(label="File", menu=filemenu)
 
 editmenu = Menu(menubar, tearoff=0)
-editmenu.add_command(label="Clear")
+editmenu.add_command(label="Clear", command=openfileW)
 
-menubar.add_cascade(label="Edit", menu=editmenu, command=clearstuff)
+menubar.add_cascade(label="Edit", menu=editmenu)
+
 
 root.config(menu=menubar)
 
