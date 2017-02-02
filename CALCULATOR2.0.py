@@ -17,6 +17,13 @@ def openfileR():
 def clear():
     entry1.delete(0, END)
     
+def addtolistp1():
+    entrytxt="("
+    entry1.insert(END,entrytxt)
+    
+def addtolistp2():
+    entrytxt=")"
+    entry1.insert(END,entrytxt)
 
 def addtolist1():
     entrytxt="1"
@@ -138,7 +145,7 @@ def div():
 root = Tk()
 
 entry1 = Entry(root)
-entry1.grid(row=0, column=1, columnspan=6, sticky=EW)
+entry1.grid(row=0, column=1, columnspan=7, sticky=EW)
 
 
 menubar = Menu(root)
@@ -154,8 +161,8 @@ buttona=Button(root,text="=",width=6,command=equals)
 buttona.grid(row=5, column=5,columnspan=2,sticky=EW)
 
   
-buttonc=Button(root,text='C',width=6,command=clear)
-buttonc.grid(row=2, column=5)
+buttonc=Button(root,text='CLEAR',width=6,command=clear)
+buttonc.grid(row=2, column=5, columnspan=2, sticky=EW)
   
 buttond=Button(root,text="+",width=6,command=addition)
 buttond.grid(row=5, column=4)
@@ -192,10 +199,14 @@ button3=Button(root,text="3",width=6,command=addtolist3).grid(row=4, column=3)
 button0=Button(root,text="0",width=6,command=addtolist0).grid(row=5, column=1)
   
 buttoni=Button(root,text=".",width=6,command=addtolistl).grid(row=5, column=2)
-    
+  
+buttonj=Button(root,text="(",width=6,command=addtolistp1).grid(row=3, column=5)
+  
+buttonk=Button(root,text=")",width=6,command=addtolistp2).grid(row=3, column=6)
+  
 buttonnl=Button(root,text="√",width=6,command=sqrt).grid(row=4, column=5)
   
-buttonm=Button(root,text="x²",width=6,command=sq).grid(row=3, column=5)
+buttonm=Button(root,text="x²",width=6,command=sq).grid(row=4, column=6)
 
 menubar.add_cascade(label="Edit", menu=editmenu)
 
