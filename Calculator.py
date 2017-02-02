@@ -13,6 +13,11 @@ def openfileR():
     fj.write(inputs)
     fj.close()
   
+def openfileQ():
+    fj=open("Readme.txt", 'w')
+    fj.get()
+    entry1.insert(END,fj)
+    fj.close
     
 def clear():
     entry1.delete(0, END)
@@ -145,6 +150,8 @@ menubar = Menu(root)
 filemenu = Menu(menubar, tearoff=0)
 filemenu.add_command(label="Save", command=openfileR)
 menubar.add_cascade(label="File", menu=filemenu)
+filemenu.add_separator()
+filemenu.add_command(label="Open", command=openfileQ)
 
 editmenu = Menu(menubar, tearoff=0)
 editmenu.add_command(label="Clear", command=openfileW)
