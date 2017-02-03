@@ -14,10 +14,9 @@ def openfileR():
     fj.close()
   
 def openfileQ():
-    fj=open("Readme.txt", 'w')
-    fj.get()
-    entry1.insert(END,fj)
-    fj.close
+    tj=open("Readme.txt", 'r')
+    entry1.insert(END,tj.read())
+    tj.close()
     
 def clear():
     entry1.delete(0, END)
